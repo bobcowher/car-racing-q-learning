@@ -5,4 +5,4 @@ env = gym.make("CarRacing-v3", continuous=False, render_mode="rgb_array")
 
 agent = Agent(env=env, max_buffer_size=100000)
 
-agent.train(episodes=2400, batch_size=32)
+agent.train(episodes=1200, batch_size=32)
