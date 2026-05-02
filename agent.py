@@ -61,7 +61,7 @@ class Agent:
 
     def select_action(self, obs):
         if random.random() < self.epsilon:
-            return self.env.action_space.sample()
+            return random.choices([0, 1, 2, 3, 4], weights=[0.05, 0.20, 0.20, 0.50, 0.05])[0]
         with torch.no_grad():
             obs_t = obs.unsqueeze(0).float().to(self.device) / 255.0
             return self.q_model(obs_t).argmax(dim=1).item()
@@ -105,7 +105,7 @@ class Agent:
         self.target_q_model.load_the_model("q_model", device=self.device)
 
     def train(self, episodes=1000, batch_size=32):
-        run_tag = f'dqn_bs{batch_size}'
+        run_tag = f'dqn_biased_explore'
         writer_name = f'runs/{datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")}_{run_tag}'
         writer = SummaryWriter(writer_name)
 
