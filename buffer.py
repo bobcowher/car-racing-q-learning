@@ -1,12 +1,9 @@
 import torch
-import numpy as np
 import os
 
-from torch._C import device
-
 class ReplayBuffer:
-    def __init__(self, max_size, input_shape, n_actions,
-                 input_device, output_device='cpu', frame_stack=4):
+    def __init__(self, max_size, input_shape,
+                 input_device, output_device='cpu'):
         self.mem_size = max_size
         self.mem_ctr  = 0
 

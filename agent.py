@@ -24,11 +24,9 @@ class Agent:
         obs, _ = self.env.reset()
         obs = self.process_observation(obs)
 
-        self.obs_shape = obs.shape  # (C, H, W)
         self.memory = ReplayBuffer(
             max_size=max_buffer_size,
             input_shape=obs.shape,
-            n_actions=self.env.action_space.n,
             input_device="cpu",
             output_device=self.device,
         )
